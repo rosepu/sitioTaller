@@ -16,6 +16,7 @@ def detail(request, new_slug):
 		context = {
 			'new': new_detail,
 			'gallery': gallery,
+			'range': range(1, gallery.amount+1)
 		}
 	else:
 		context = {
