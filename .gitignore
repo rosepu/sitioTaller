@@ -55,6 +55,7 @@ coverage.xml
 .static_storage/
 .media/
 local_settings.py
+db.sqlite3
 
 # Flask stuff:
 instance/
@@ -102,3 +103,7 @@ venv.bak/
 
 # mypy
 .mypy_cache/
+
+#Visual Code
+.vscode/
+passenger_wsgi.py

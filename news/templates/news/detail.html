@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block head_block %}
+	<title>{{ new.title }}</title>
+{% endblock head_block %}
+
+{% block main_container %}
+
+<div class="container">
+	<h2>{{ new.title }}</h2>
+
+	{% for paraf in new.body_as_list %}
+	<p>{{ paraf }}</p>
+	{% endfor %}
+
+</div>
+
+{% endblock main_container %}
