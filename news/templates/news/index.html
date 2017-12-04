@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block head_block %}
+<title>Noticias Anteriores</title>
+{% endblock head_block %}
+
+{% block main_container %}
+
+<div class="container">
+<h2>Noticias Anteriores</h2>
+
+{% for new_item in new_list %}
+<div class="media">
+	<img class="mr-3" src="{{ new_item.image.url }}" alt="Generic placeholder image" height="100px">
+	<div class="media-body">
+		<h5 class="mt-0">{{ new_item.title }}</h5>
+		<p>{{ new_item.body|slice:":150" }}</p>
+	</div>
+</div>
+{% endfor %}
+</div>
+
+{% endblock main_container %}
