@@ -13,6 +13,23 @@
 	<p>{{ paraf }}</p>
 	{% endfor %}
 
+	{% if gallery %}
+	<h3>Fotos</h3>
+	<div class="row">
+		{% for i in range %}
+		<div class="col-md-3">
+			<a data-fancybox="gallery" href="\media\img\news\{{ new.slug }}\{{ i }}.jpg">
+				<img src="\media\img\news\{{ new.slug }}\{{ i }}.jpg" alt="" class="img-fluid">
+			</a>
+		</div>
+		{% endfor %}
+	</div>
+	{% endif %}
 </div>
 
 {% endblock main_container %}
+
+{% block bottom_block %}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.css" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.js"></script>
+{% endblock bottom_block %}

@@ -1,6 +1,6 @@
 from django.http      import HttpResponse
 from django.shortcuts import get_object_or_404,render
-from .models          import New
+from .models          import New, NewGallery
 
 def index(request):
 	new_list = New.objects.order_by('-date')
@@ -11,10 +11,17 @@ def index(request):
 
 def detail(request, new_slug):
 	new_detail = get_object_or_404(New, slug=new_slug)
-	body = new_detail.body.split('\n')
-	context = {
-		'new': new_detail,
-	}
+	if (new_detail.new_type == New.GALLERY_TYPE):
+		gallery = get_object_or_404(NewGallery, owner_new=new_detail)
+		context = {
+			'new': new_detail,
+			'gallery': gallery,
+			'range': range(1, gallery.amount+1)
+		}
+	else:
+		context = {
+			'new': new_detail,
+		}
 	return render(request, 'news/detail.html', context)
 
 def home(request):
