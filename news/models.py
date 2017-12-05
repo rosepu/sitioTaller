@@ -82,3 +82,13 @@ class NewGallery(models.Model):
 			self.zip_import.delete(save=True)
 			self.amount = i_name-1
 			super(NewGallery, self).save(*args, **kwargs)
+
+class Carousel(models.Model):
+	owner = models.OneToOneField(New, on_delete=models.CASCADE, primary_key=True)
+	image = models.ImageField(upload_to = 'img/carrousel')
+
+	def __str__(self):
+		return u'%s\'s carousel' % (self.owner)
+
+	def owner_title(self):
+		return self.owner.title

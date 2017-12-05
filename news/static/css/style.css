@@ -12,11 +12,14 @@ header h1 {
 
 /* header */
 nav.navbar .navbar-brand a{
-	font-family: 'Goudy Bookletter 1911';
 	color: #fff;
 }
 nav.navbar .navbar-brand a:hover {
 	text-decoration: none;
+}
+
+nav.navbar {
+	margin-bottom: 15px;
 }
 
 @media (min-width:768px) {
@@ -68,6 +71,16 @@ nav.navbar .navbar-brand a:hover {
 		font-size: 1rem;
 	}
  }
+
+@media (max-width: 991px) {
+	#carouselHome {
+		margin-left: calc(50% - 50vw);
+		margin-right: calc(50% - 50vw);
+	}
+	nav.navbar {
+		margin-bottom: 0;
+	}
+}
 
 .news {
 	margin-top: 16px;
