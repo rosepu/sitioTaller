@@ -17,10 +17,11 @@ from django.conf             import settings
 from django.conf.urls        import include, url
 from django.conf.urls.static import static
 from django.contrib          import admin
+from sitioTaller.admin       import admin_site
 from news                    import views         as newsViews
 
 urlpatterns = [
-    url(r'^admin/', admin.site.urls),
+    url(r'^admin/', admin_site.urls),
     url(r'^news/', include('news.urls')),
     url(r'^$', newsViews.home)
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
