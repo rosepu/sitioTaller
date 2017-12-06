@@ -13,6 +13,10 @@ class Category(models.Model):
 	def __str__(self):
 		return u'%s' % (self.name)
 
+	class Meta:
+		verbose_name = "Categoria"
+		verbose_name_plural = "Categorias"
+
 
 class New(models.Model):
 	TEXT_TYPE = 0
@@ -37,6 +41,10 @@ class New(models.Model):
 
 	def body_as_list(self):
 		return self.body.split('\n')
+
+	class Meta:
+		verbose_name = "Noticia"
+		verbose_name_plural = "Noticias"
 
 
 class NewGallery(models.Model):
@@ -83,6 +91,11 @@ class NewGallery(models.Model):
 			self.amount = i_name-1
 			super(NewGallery, self).save(*args, **kwargs)
 
+	class Meta:
+		verbose_name = "Galeria"
+		verbose_name_plural = "Galerias"
+
+
 class Carousel(models.Model):
 	owner = models.OneToOneField(New, on_delete=models.CASCADE, primary_key=True)
 	image = models.ImageField(upload_to = 'img/carrousel')
@@ -92,3 +105,7 @@ class Carousel(models.Model):
 
 	def owner_title(self):
 		return self.owner.title
+
+	class Meta:
+		verbose_name = "Imagen del carrusel"
+		verbose_name_plural = "Imagenes del carrusel"
