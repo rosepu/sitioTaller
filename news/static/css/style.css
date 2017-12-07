@@ -162,3 +162,10 @@ footer {
 .block-category {
 	margin-top: 5px;
 }
+
+.img-gallery {
+	height: 140px;
+	object-fit: cover;
+	width: 100%;
+	margin-bottom: 15px;
+}
