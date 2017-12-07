@@ -1,6 +1,6 @@
 from django.http      import HttpResponse
 from django.shortcuts import get_object_or_404,render
-from .models          import New, NewGallery
+from .models          import New, NewGallery, Carousel
 
 def index(request):
 	new_list = New.objects.order_by('-date')
@@ -26,7 +26,9 @@ def detail(request, new_slug):
 
 def home(request):
 	latest_new_list = New.objects.order_by('-date')[:6]
+	carousel_home = Carousel.objects.order_by('poss')
 	context = {
-		'latest_new_list': latest_new_list
+		'latest_new_list': latest_new_list,
+		'carousel': carousel_home,
 	}
 	return render(request, 'news/home.html', context)

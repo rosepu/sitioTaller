@@ -1,9 +1,12 @@
 import os
+import sys
 
-from django.conf import settings
-from django.db   import models
-from io          import BytesIO
-from zipfile     import ZipFile
+from django.conf            import settings
+from django.core.validators import MinValueValidator
+from django.core.files.base import ContentFile
+from django.db              import models
+from io                     import BytesIO
+from zipfile                import ZipFile
 
 
 class Category(models.Model):
@@ -14,8 +17,8 @@ class Category(models.Model):
 		return u'%s' % (self.name)
 
 	class Meta:
-		verbose_name = "Categoria"
-		verbose_name_plural = "Categorias"
+		verbose_name = 'Categoria'
+		verbose_name_plural = 'Categorias'
 
 
 class New(models.Model):
@@ -43,8 +46,8 @@ class New(models.Model):
 		return self.body.split('\n')
 
 	class Meta:
-		verbose_name = "Noticia"
-		verbose_name_plural = "Noticias"
+		verbose_name = 'Noticia'
+		verbose_name_plural = 'Noticias'
 
 
 class NewGallery(models.Model):
@@ -92,20 +95,47 @@ class NewGallery(models.Model):
 			super(NewGallery, self).save(*args, **kwargs)
 
 	class Meta:
-		verbose_name = "Galeria"
-		verbose_name_plural = "Galerias"
+		verbose_name = 'Galeria'
+		verbose_name_plural = 'Galerias'
 
 
 class Carousel(models.Model):
 	owner = models.OneToOneField(New, on_delete=models.CASCADE, primary_key=True)
 	image = models.ImageField(upload_to = 'img/carrousel')
+	poss  = models.IntegerField(unique=True, validators=[MinValueValidator(0)])
 
 	def __str__(self):
 		return u'%s\'s carousel' % (self.owner)
 
 	def owner_title(self):
 		return self.owner.title
+	
+	def owner_slug(self):
+		return self.owner.slug
+
+	def save(self, *args, **kwargs):
+		try:
+			from PIL import Image
+			image = Image.open(self.image)
+			resized  = image.resize((825, 350), Image.ANTIALIAS)
+			new_image_io = BytesIO()
+			resized.save(new_image_io, format=image.format)
+			
+			temp_name = self.image.name
+			self.image.delete(save=False)
+			
+			self.image.save(
+				temp_name,
+				content=ContentFile(new_image_io.getvalue()),
+				save=False
+			)
+		except IOError as e:
+			print(e)
+			print("cannot create thumbnail for '%s'" % self.image.path)
+		super(Carousel, self).save(*args, **kwargs)
+
 
 	class Meta:
-		verbose_name = "Imagen del carrusel"
-		verbose_name_plural = "Imagenes del carrusel"
+		verbose_name = 'Imagen del carrusel'
+		verbose_name_plural = 'Imagenes del carrusel'
+		order_with_respect_to = 'poss'

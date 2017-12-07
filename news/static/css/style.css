@@ -120,3 +120,18 @@ footer {
 	margin-top: 16px;
 	color: #fff;
 }
+
+.carousel-caption {
+	left: 0;
+	right: 0;
+}
+
+.carousel-caption h3 {
+	background-color: rgba(158, 158, 158, 0.7);
+}
+
+.carousel-caption h3 a,
+.carousel-caption h3 a:hover {
+	color: #fff !important;
+	text-decoration: none;
+}

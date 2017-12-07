@@ -13,20 +13,27 @@
 						
 						<div id="carouselHome" class="carousel slide" data-ride="carousel">
 							<ol class="carousel-indicators">
-								<li data-target="#carouselHome" data-slide-to="0" class="active"></li>
-								<li data-target="#carouselHome" data-slide-to="1"></li>
-								<li data-target="#carouselHome" data-slide-to="2"></li>
+								{% for item in carousel %}
+								{% if item.poss == 0 %}
+								<li data-target="#carouselHome" data-slide-to="{{ item.poss }}" class="active"></li>
+								{% else %}
+								<li data-target="#carouselHome" data-slide-to="{{ item.poss }}"></li>
+								{% endif %}
+								{% endfor %}
 							</ol>
 							<div class="carousel-inner">
+								{% for item in carousel %}
+								{% if item.poss == 0 %}
 								<div class="carousel-item active">
-									<img class="d-block w-100" src="http://via.placeholder.com/825x350" alt="First slide">
-								</div>
+								{% else %}
 								<div class="carousel-item">
-									<img class="d-block w-100" src="http://via.placeholder.com/825x350" alt="Second slide">
+								{% endif %}
+									<img class="d-block w-100" src="{{ item.image.url }}" alt="First slide">
+									<div class="carousel-caption d-none d-md-block">
+										<h3><a href="{% url 'news:detail' item.owner_slug %}">{{ item.owner_title }}</a></h3>
+									</div>
 								</div>
-								<div class="carousel-item">
-									<img class="d-block w-100" src="http://via.placeholder.com/825x350" alt="Third slide">
-								</div>
+								{% endfor %}
 							</div>
 							<a class="carousel-control-prev" href="#carouselHome" role="button" data-slide="prev">
 								<span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -53,7 +60,7 @@
 							</div>
 							<div class="d-flex justify-content-center">
 								<a href="{% url 'news:index' %}" class="btn">
-									<h4>Noticias Anteriores</h4>
+									<h5>Todas las noticias	</h5>
 								</a>
 							</div>
 						</div>
