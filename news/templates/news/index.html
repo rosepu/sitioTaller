@@ -7,17 +7,34 @@
 {% block main_container %}
 
 <div class="container">
-<h2>Noticias Anteriores</h2>
+<h2 class="title-section">Noticias Anteriores</h2>
 
+<div class="row">
+	<div class="col-md-3">
+		<h4>Categorias</h4>
+			<ul class="nav flex-column">
+					
+	{% for category in category_list %}
+	<li class="nav-item">
+			<a class="nav-link active" href="{% url 'news:category' category.slug %}">{{ category.name }}</a>
+		</li>
+	
+	{% endfor %}	
+	</ul>
+	</div>
+	<div class="col-md-9">
 {% for new_item in new_list %}
-<div class="media">
+<div class="media new-list">
 	<img class="mr-3" src="{{ new_item.image.url }}" alt="Generic placeholder image" height="100px">
 	<div class="media-body">
-		<h5 class="mt-0">{{ new_item.title }}</h5>
+		<h5 class="mt-0"><a href="{% url 'news:detail' new_item.slug %}">{{ new_item.title }}</a></h5>
 		<p>{{ new_item.body|slice:":150" }}</p>
 	</div>
 </div>
 {% endfor %}
+	</div>
+</div>
+
 </div>
 
 {% endblock main_container %}
