@@ -86,8 +86,13 @@ nav.navbar {
 	margin-top: 16px;
 }
 
+.title-section,
 .news h2 {
-	border-bottom: 1px solid #c58013;
+	border-bottom: 1px solid #9aa3ad;
+	border-top: 1px solid #9aa3ad;
+	padding-left: 1rem;
+	padding-top: 0.5rem;
+	padding-bottom: 0.5rem;
 }
 
 .news .card {
@@ -119,4 +124,37 @@ footer {
 	padding-top: 16px;
 	margin-top: 16px;
 	color: #fff;
+}
+
+.carousel-caption {
+	left: 0;
+	right: 0;
+}
+
+.carousel-caption h3 {
+	background-color: rgba(158, 160, 161, 0.75);
+}
+
+.carousel-caption h3 a,
+.carousel-caption h3 a:hover {
+	color: #fff !important;
+	text-decoration: none;
+}
+
+.bg-grey {
+	background-color: #727b84
+}
+
+.bg-grey-light {
+	background-color: #898b8c;
+}
+
+.new-list {
+	margin: 15px;
+}
+
+.new-list img {
+	width: 100px;
+	height: 100px;
+	object-fit: cover;
 }
