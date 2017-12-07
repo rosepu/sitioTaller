@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+
+{% block head_block %}
+<title>Contacto</title>
+{% endblock head_block %}
+
+{% block main_container %}
+
+<div class="container">
+	<div class="row justify-content-md-center">
+	  <div class="col col-lg-7">
+		<h1 class="text-center">Formulario de contacto</h1>      
+		<form action="" method="post" enctype="multipart/form-data" class="form-container">
+		  {% csrf_token %}
+		  {% for f in form %}
+			{% if f.errors %}
+			  <div class="form-group is-invalid">
+				<label for="id_{{ f.name }}">{{ f.label }}</label>
+				{{ f }}
+				{% for e in  f.errors %}
+				<div class="invalid-feedback">
+				  {{ e }}
+				</div>
+				{% endfor %}
+			  </div>
+			{% else %}
+			  <div class="form-group">
+				<label for="id_{{ f.name }}">{{ f.label }}</label>
+				{{ f }}
+			  </div>
+			{% endif %}
+		  {% endfor %}
+		  <button type="submit" class="btn btn-primary">Enviar</button>
+		</form>
+	  </div>
+	</div>
+  </div>
+
+{% endblock main_container %}
+
+{% block bottom_block %}
+
+{% endblock bottom_block %}

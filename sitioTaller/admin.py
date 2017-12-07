@@ -2,6 +2,7 @@ from django.contrib.admin       import AdminSite
 from django.contrib.auth.models import User, Group
 from django.contrib.auth.admin  import UserAdmin, GroupAdmin
 from news.models                import Category, Carousel, New, NewGallery
+from contact.models             import Message
 
 
 class MyAdminSite(AdminSite):
@@ -17,3 +18,4 @@ admin_site.register(Category)
 admin_site.register(Carousel)
 admin_site.register(New)
 admin_site.register(NewGallery)
+admin_site.register(Message)

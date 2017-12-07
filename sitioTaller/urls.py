@@ -23,5 +23,6 @@ from news                    import views         as newsViews
 urlpatterns = [
     url(r'^admin/', admin_site.urls),
     url(r'^news/', include('news.urls')),
+    url(r'^contact/', include('contact.urls')),
     url(r'^$', newsViews.home)
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
