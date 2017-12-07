@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import New, Category, NewGallery
+from .models import New, Category, NewGallery, Carousel
 
 
 class GalleryInline(admin.StackedInline):
@@ -18,3 +18,4 @@ class NewAdmin(admin.ModelAdmin):
 admin.site.register(New, NewAdmin)
 admin.site.register(Category)
 admin.site.register(NewGallery)
+admin.site.register(Carousel)
